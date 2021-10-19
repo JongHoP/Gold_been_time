@@ -15,4 +15,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/setting_btn"
+        android:text="설정 버튼"
+        android:clickable="true"
+        android:onClick="gotoSetting">
+    </Button>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
