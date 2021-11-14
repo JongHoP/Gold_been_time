@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/User/Documents/Github/Gold_been_time/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/Github/Gold_been_time/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/User/Documents/Github/Gold_been_time/app/src/main/res/layout/clockui.xml" value="0.22" />
+        <entry key="..\:/Users/User/Documents/Github/Gold_been_time/app/src/main/res/layout/fragment_t_ime_picker.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -16,16 +17,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/setting_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/setting_btn"
-        android:text="설정 버튼"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        app:layout_editor_absoluteX="4dp"
+        app:layout_editor_absoluteY="16dp"
         android:clickable="true"
-        android:onClick="gotoSetting">
-    </Button>
+        android:onClick="gotoSetting"
+        android:text="설정 버튼"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
-
-
+    <Button
+        android:id="@+id/clock_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        app:layout_editor_absoluteX="0dp"
+        app:layout_editor_absoluteY="80dp"
+        android:clickable="true"
+        android:onClick="timerPicker"
+        android:text="시계 출력"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
