@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.provider.Contacts;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },hour, minute, false);
         timePickerDialog.show();
-    }
+    }// 참고: https://mainia.tistory.com/733
 
     public void gotoSetting(View view){
 
@@ -55,6 +57,26 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
         startActivityForResult(intent, 0);
         // 참고: https://lcw126.tistory.com/277
+    }
+
+
+    public void run_contacts(View view){
+
+        Button button_contacts;
+        button_contacts = (Button)findViewById(R.id.contacts_btn);
+
+        Intent contact_intent = new Intent(Intent.ACTION_DIAL);
+        startActivity(contact_intent);
+    }
+
+    public void run_message(View view){
+
+        Button button_message;
+        button_message = (Button) findViewById(R.id.message_btn);
+
+        //Intent message_intent = new Intent(Intent.ACTION_VIEW);
+        Intent message_intent = new Intent(Intent.ACTION_VIEW);
+        startActivity(message_intent);
     }
 
 //    public void XgotoSettingX(View view){
