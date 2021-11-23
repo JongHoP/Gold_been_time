@@ -1,5 +1,7 @@
 package com.example.gold_being_time;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -36,7 +38,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     TextView kcal;
     SensorManager sm;
     Sensor sensor_step_detector;
-    int steps = 14998;
+    int steps = 0;
     CircleProgressBar circleProgressBar;
     private static Handler mHandler ;
     Long ell;  //타이머 시간(초로 계산하여 나옴)
@@ -65,6 +67,11 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
         circleProgressBar = findViewById(R.id.cpb_circlebar);
 
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+
+            requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
+        }
 
         Thread thread = new Thread(runnable);
         thread.setDaemon(true);
@@ -192,8 +199,8 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
 
 
-
- /*   public void calKcal(){
+/*
+    public void calKcal(){
         kcal = findViewById(R.id.tv6);
         double met;
         met = 3.3* 3.5 * 70 * (3);//(ell/1000/60); //3.3 * 3.5 * 70 * ell;
