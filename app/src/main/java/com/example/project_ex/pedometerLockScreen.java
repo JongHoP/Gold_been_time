@@ -2,6 +2,8 @@ package com.example.gold_being_time;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,8 +14,11 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.os.SystemClock;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CalendarView;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +34,8 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
     private static final String DEFAULT_PATTERN = "%d"+ "/" +"%d";
 
+    Animation animation;
+    ImageView imageView;
     BackRunnable runnable = new BackRunnable();
     private Thread timeThread = null;
     TextView myOutput;
@@ -38,7 +45,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     TextView kcal;
     SensorManager sm;
     Sensor sensor_step_detector;
-    int steps = 0;
+    int steps = 14996;
     CircleProgressBar circleProgressBar;
     private static Handler mHandler ;
     Long ell;  //타이머 시간(초로 계산하여 나옴)
@@ -56,11 +63,19 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        imageView = findViewById(R.id.imageView);
+        imageView.setColorFilter(Color.parseColor("#0066cc"));
+        animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.shake_shoe);
+        imageView.startAnimation(animation);
+
         goal_count = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
         time = findViewById(R.id.tv4);
         //myOutput = (TextView)findViewById(R.id.tv4);
         tv_sensor = findViewById(R.id.sensor);
         tv_sensor.setText("0");  //걸음 수 초기화 및 출력
+
+
 
         sm = (SensorManager)getSystemService(SENSOR_SERVICE);  //센서 매니저 생성
         sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  //스텝 감지 센서 등록
@@ -97,9 +112,9 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             }
         };
         circleProgressBar.setProgressFormatter(progressFormatter);
-        circleProgressBar.setProgressTextColor(ContextCompat.getColor(this, R.color.button_color));
+        circleProgressBar.setProgressTextColor(ContextCompat.getColor(this, R.color.white_gray_color));
         circleProgressBar.setProgressBackgroundColor(ContextCompat.getColor(this, R.color.white_gray_color));
-        circleProgressBar.setProgressStartColor(ContextCompat.getColor(this, R.color.button_color));
+        circleProgressBar.setProgressStartColor(ContextCompat.getColor(this, R.color.teal_200));
         circleProgressBar.setProgressEndColor(ContextCompat.getColor(this, R.color.button_color));
         int max = 100;
         int progress = 70;
