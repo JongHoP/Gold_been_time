@@ -27,6 +27,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
     private static final String DEFAULT_PATTERN = "%d"+ "/" +"%d";
 
+    BackRunnable runnable = new BackRunnable();
     private Thread timeThread = null;
     TextView myOutput;
     TextView tv_sensor;
@@ -35,7 +36,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     TextView kcal;
     SensorManager sm;
     Sensor sensor_step_detector;
-    int steps = 15000;
+    int steps = 14998;
     CircleProgressBar circleProgressBar;
     private static Handler mHandler ;
     Long ell;  //타이머 시간(초로 계산하여 나옴)
@@ -53,7 +54,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        goal_count = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
         time = findViewById(R.id.tv4);
         //myOutput = (TextView)findViewById(R.id.tv4);
         tv_sensor = findViewById(R.id.sensor);
@@ -64,23 +65,23 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
         circleProgressBar = findViewById(R.id.cpb_circlebar);
 
-        BackRunnable runnable = new BackRunnable();
+
         Thread thread = new Thread(runnable);
         thread.setDaemon(true);
         thread.start();
 
-        kcalRunnable runnable1 = new kcalRunnable();
+      /*  kcalRunnable runnable1 = new kcalRunnable();
         Thread thread1 = new Thread(runnable1);
         thread1.setDaemon(true);
         thread1.start();
-
+*/
         circleBar();  //원형 프로세스 바
         timerOn();  //타이머
     }
 
     //원형 프로세스바
     public void circleBar(){
-        goal_count = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
+
         int num = Integer.parseInt(goal_count.getText().toString());
         CircleProgressBar.ProgressFormatter progressFormatter = new CircleProgressBar.ProgressFormatter() {
             @Override
@@ -163,7 +164,6 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
                 break;*/
             case STOP:
                 handler.removeMessages(0);
-
                 //처음상태로 원상복귀시킴
                 time.setText(String.format("%02d:%02d:%02d", ell / 1000 / 60 / 60, ell / 1000 / 60, (ell/1000)%60));
                 //mStatus = RUNNING;
@@ -180,8 +180,10 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     }
 
     public void allStop(){  //시간 멈추기
-        if(ell > 5000){
+        String a = goal_count.getText().toString();
+        if(steps > Integer.parseInt(a)){
             mStatus = STOP;
+            runnable.stop();
             timerOn();
         }else
             mStatus = RUNNING;
@@ -191,14 +193,12 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
 
 
-    public void calKcal(){
+ /*   public void calKcal(){
         kcal = findViewById(R.id.tv6);
         double met;
-        met = 3.3* 3.5 * 70 * (ell/1000/60); //3.3 * 3.5 * 70 * ell;
-        kcal.setText((int) met*5);
-    }
-
-
+        met = 3.3* 3.5 * 70 * (3);//(ell/1000/60); //3.3 * 3.5 * 70 * ell;
+        kcal.setText("aa");//String.valueOf(5) );
+    }*/
 
 
 
@@ -208,6 +208,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         public void run() {
             while(!stopped){   //!Thread.currentThread().isInterrupted()
                 circleBar();
+               // calKcal();
                 try{
                     Thread.sleep(1000);
                 }catch(InterruptedException e){
@@ -219,13 +220,12 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             stopped=true;
         }
     }
-
-    class kcalRunnable implements Runnable{
+   /* class kcalRunnable implements Runnable{
         private boolean stopped=false;
         @Override
         public void run() {
             while(!stopped){   //!Thread.currentThread().isInterrupted()
-
+                    calKcal();
                 try{
                     Thread.sleep(1000);
                 }catch(InterruptedException e){
@@ -233,5 +233,5 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
                 }
             }
         }
-    }
+    }*/
 }
