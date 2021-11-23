@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         button_message = (Button) findViewById(R.id.message_btn);
 
         //Intent message_intent = new Intent(Intent.ACTION_VIEW);
-        Intent message_intent = new Intent(Intent.ACTION_VIEW);
+        Intent message_intent = this.getPackageManager().getLaunchIntentForPackage("com.android.mms");
         startActivity(message_intent);
     }
 
