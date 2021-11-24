@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">골빈타임</string>
+    <string name="app_name2">Gold Being Time</string>
+    <string name="temp">Content</string>
+
+    <string name="content1">content1</string>
+    <string name="rec1">rec1</string>
+
+    <string name="content2">content</string>
+    <string name="rec2">rec</string>
+
+    <string name="content3">content</string>
+    <string name="rec3">rec</string>
+
+    <string name="walk">걸음수 설정</string>
+    <string name="time">시간 설정</string>
+</resources>
