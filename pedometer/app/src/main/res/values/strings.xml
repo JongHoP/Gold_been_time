@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Gold_being_time</string>
+
+    <string name="title">목표: </string>
+
+    <string name="time">시간: </string>
+    <string name="cal">칼로리: </string>
+    <string name="timer">00:00:00</string>
+</resources>
