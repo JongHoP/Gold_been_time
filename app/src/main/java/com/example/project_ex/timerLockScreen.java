@@ -18,13 +18,14 @@ public class timerLockScreen extends Activity  {
     CountDownTimer countDownTimer;
     TextView splitGoal; //입력받은 시간 텍스트뷰
     String goalNum;  //시간을 숫자로 쪼갠 것
+    String goall;
     TextView ex;
 
     //String hour, min, second;
 
     CircleProgressBar circleProgressBar;
 
-    String exnum="000010";
+    String exnum="000009";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,9 +35,9 @@ public class timerLockScreen extends Activity  {
         splitGoal = (TextView) findViewById(R.id.tv2);
         circleProgressBar = findViewById(R.id.cpb_circlebar);
 
-        //splitGoal();
-        countDown(exnum);
-        circleBar();
+
+        countDown(splitGoal());
+
     }
 
     //입력받은 시간을 숫자와 문자로 나누기
@@ -45,12 +46,20 @@ public class timerLockScreen extends Activity  {
         String goal = splitGoal.getText().toString();
         if(goal.indexOf("시간")>0){
             goalNum = goal.substring(0, goal.indexOf("시간"));
-
+            if(Integer.parseInt(goalNum)< 10){
+                goall = "0" + goalNum + "0000";
+            } else
+            goall = goalNum + "0000";
         }else if(goal.indexOf("분")>0){
             goalNum = goal.substring(0, goal.indexOf("분"));
+            if(Integer.parseInt(goalNum) < 10 && Integer.parseInt(goalNum) >0){
+                goall = "000" + goalNum + "00";
+                System.out.println("goall " + goall);
+            } else
+            goall = "00" + goalNum + "00";
         }
         Toast.makeText(this, goalNum, Toast.LENGTH_SHORT).show();
-        return goalNum;
+        return goall;
     }
 
     public void countDown(String time){
@@ -118,7 +127,7 @@ public class timerLockScreen extends Activity  {
             // 제한시간 종료시
             public void onFinish() {
                 // 변경 후
-                ex.setText("촬영종료!");
+                ex.setText("종료!");
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
             }
         }.start();
@@ -126,9 +135,9 @@ public class timerLockScreen extends Activity  {
 
     
     
-    public void circleBar(){
-/*        splitGoal = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
-        int num = Integer.parseInt(splitGoal.getText().toString());*/
+   /* public void circleBar(){
+*//*        splitGoal = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
+        int num = Integer.parseInt(splitGoal.getText().toString());*//*
         CircleProgressBar.ProgressFormatter progressFormatter = new CircleProgressBar.ProgressFormatter() {
             @Override
             public CharSequence format(int progress, int max) {
@@ -151,6 +160,6 @@ public class timerLockScreen extends Activity  {
         circleProgressBar.setMax(Integer.parseInt(exnum));
         circleProgressBar.setProgress(1);
         circleProgressBar.setStartDegree(degree);
-    }
+    }*/
 }
 
