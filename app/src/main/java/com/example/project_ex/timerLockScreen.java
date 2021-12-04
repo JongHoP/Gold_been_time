@@ -1,8 +1,11 @@
 package com.example.gold_being_time;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,15 +16,17 @@ import com.dinuscxj.progressbar.CircleProgressBar;
 
 public class timerLockScreen extends Activity  {
 
-    private static final String DEFAULT_PATTERN = "%d"+ ":" +"%d" + ":" + "%d" ;
+    private static final String DEFAULT_PATTERN = "%s"+ ":" +"%s" + ":" + "%s" ;
 
+    BRunnable runnable = new BRunnable();
     CountDownTimer countDownTimer;
     TextView splitGoal; //입력받은 시간 텍스트뷰
     String goalNum;  //시간을 숫자로 쪼갠 것
     String goall;
     TextView ex;
+    long conversionTime = 0;
 
-    //String hour, min, second;
+    String hour, min, second;
 
     CircleProgressBar circleProgressBar;
 
@@ -36,8 +41,12 @@ public class timerLockScreen extends Activity  {
         circleProgressBar = findViewById(R.id.cpb_circlebar);
 
 
-        countDown(splitGoal());
+        Thread thread = new Thread(runnable);
+        thread.setDaemon(true);
+        thread.start();
 
+        countDown(splitGoal());
+        circleBar();
     }
 
     //입력받은 시간을 숫자와 문자로 나누기
@@ -64,7 +73,7 @@ public class timerLockScreen extends Activity  {
 
     public void countDown(String time){
         ex = (TextView) findViewById(R.id.tv3);
-        long conversionTime = 0;
+        //long conversionTime = 0;
 
         // 1000 단위가 1초
         // 60000 단위가 1분
@@ -89,7 +98,7 @@ public class timerLockScreen extends Activity  {
 
         // 변환시간
         conversionTime = Long.valueOf(getHour) * 1000 * 3600 + Long.valueOf(getMin) * 60 * 1000 + Long.valueOf(getSecond) * 1000;
-
+        System.out.println("conver"+conversionTime);
         // 첫번쨰 인자 : 원하는 시간 (예를들어 30초면 30 x 1000(주기))
         // 두번쨰 인자 : 주기( 1000 = 1초)
         countDownTimer = new CountDownTimer(conversionTime, 1000) {
@@ -97,14 +106,14 @@ public class timerLockScreen extends Activity  {
             public void onTick(long millisUntilFinished) {
 
                 // 시간단위
-                String hour = String.valueOf(millisUntilFinished / (60 * 60 * 1000));
+                hour = String.valueOf(millisUntilFinished / (60 * 60 * 1000));
 
                 // 분단위
                 long getMin = millisUntilFinished - (millisUntilFinished / (60 * 60 * 1000)) ;
-                String min = String.valueOf(getMin / (60 * 1000)); // 몫
+                min = String.valueOf(getMin / (60 * 1000)); // 몫
 
                 // 초단위
-                String second = String.valueOf((getMin % (60 * 1000)) / 1000); // 나머지
+                second = String.valueOf((getMin % (60 * 1000)) / 1000); // 나머지
 
                 // 시간이 한자리면 0을 붙인다
                 if (hour.length() == 1) {
@@ -121,7 +130,6 @@ public class timerLockScreen extends Activity  {
                     second = "0" + second;
                 }
                 ex.setText(hour + ":" + min + ":" + second);
-
             }
 
             // 제한시간 종료시
@@ -135,14 +143,14 @@ public class timerLockScreen extends Activity  {
 
     
     
-   /* public void circleBar(){
-*//*        splitGoal = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
-        int num = Integer.parseInt(splitGoal.getText().toString());*//*
+    public void circleBar(){
+       // splitGoal = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
+       // int num = Integer.parseInt(splitGoal.getText().toString());
         CircleProgressBar.ProgressFormatter progressFormatter = new CircleProgressBar.ProgressFormatter() {
             @Override
             public CharSequence format(int progress, int max) {
-
-                return String.format(DEFAULT_PATTERN, countDownTimer., min, second);   //위의 hour, min, second 값을 못 읽어옴
+                System.out.println("abcde"+ hour + min +second);
+                return String.format(DEFAULT_PATTERN, hour, min, second);   //위의 hour, min, second 값을 못 읽어옴
             }
         };
 
@@ -156,10 +164,49 @@ public class timerLockScreen extends Activity  {
         int pi = 360;
         int start = 270;
 
-        int degree = start-(int)((Integer.parseInt("100")/(double)Double.parseDouble(exnum))*pi);
-        circleProgressBar.setMax(Integer.parseInt(exnum));
-        circleProgressBar.setProgress(1);
+
+        //이 부분 수정하면 원형 프로세스가 바뀜
+        System.out.println("goall" +goall);
+        int degree = (int)((30/30)*pi)-90;
+        circleProgressBar.setMax((int)conversionTime);
+        circleProgressBar.setProgress(100);
         circleProgressBar.setStartDegree(degree);
-    }*/
+    }
+    public void run_contacts(View view){
+
+        ImageButton button_contacts;
+        button_contacts = (ImageButton)findViewById(R.id.imageButton2);
+
+        Intent contact_intent = new Intent(Intent.ACTION_DIAL);
+        startActivity(contact_intent);
+    }
+
+    public void run_message(View view){
+
+        ImageButton button_message;
+        button_message = (ImageButton) findViewById(R.id.imageButton3);
+
+        //Intent message_intent = new Intent(Intent.ACTION_VIEW);
+        Intent message_intent = this.getPackageManager().getLaunchIntentForPackage("com.samsung.android.messaging");
+        startActivity(message_intent);
+    }
+
+    class BRunnable implements Runnable{
+        private boolean stopped=false;
+        @Override
+        public void run() {
+            while(!stopped){   //!Thread.currentThread().isInterrupted()
+                circleBar();
+                try{
+                    Thread.sleep(1000);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        public void stop(){
+            stopped=true;
+        }
+    }
 }
 
