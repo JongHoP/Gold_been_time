@@ -9,7 +9,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f52a75bb-3550-4926-8796-2dcf16cc9344" name="Default Changelist" comment="" />
+    <list default="true" id="f52a75bb-3550-4926-8796-2dcf16cc9344" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/viewfragment_color6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/Color2Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/Color2Fragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/Color3Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/Color3Fragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/ColorFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/ColorFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/viewfragment_color4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/viewfragment_color4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/viewfragment_color5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/viewfragment_color5.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +50,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="TestSplash.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />

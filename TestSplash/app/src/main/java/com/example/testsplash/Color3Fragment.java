@@ -69,7 +69,7 @@ public class Color3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.viewfragment_color3, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.viewfragment_color6, container, false);
         View showWordGroupListButton = rootView.findViewById(R.id.button3);
         showWordGroupListButton.setOnClickListener( new View.OnClickListener(){
             @Override
