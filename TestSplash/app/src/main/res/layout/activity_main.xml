@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/img1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="1"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:onClick="nextLayout">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/img2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="2"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:onClick="nextLayout2">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/img3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="3"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:onClick="nextLayout3">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/img4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="4"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:onClick="nextLayout4">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/img5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="5"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:onClick="nextLayout5">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
