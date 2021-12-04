@@ -36,7 +36,7 @@ public class LockApp extends AccessibilityService {
             if (pkName.equals(event.getPackageName()) && isMyApp == false) {
                 Toast.makeText(this.getApplicationContext(), event.getPackageName() + "앱이 거부되었습니다", Toast.LENGTH_LONG);
                 if (!pkName.equals("com.example.testsplash")) {
-                    gotoHome();
+                    //gotoHome();
                 } else if (pkName.equals("com.example.testsplash")) {
                     isMyApp = true;
                 }
