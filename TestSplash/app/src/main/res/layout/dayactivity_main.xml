@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/layout"
+android:layout_width="368dp"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+tools:layout_editor_absoluteX="8dp"
+tools:layout_editor_absoluteY="8dp">
+
+    <ImageView
+        android:layout_width="49dp"
+        android:layout_height="match_parent"
+        android:gravity="left"
+        android:src="@drawable/back" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="195dp"
+        android:src="@drawable/cal2"
+        />
+    <TextView
+        android:id="@+id/textView_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="날짜 정보" />
+
+    <Button
+        android:id="@+id/btn_selectDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Date"/>
+
+    <TextView
+        android:id="@+id/textView_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Time 정보" />
+
+    <Button
+    android:id="@+id/btn_time"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Set Time"/>
+
+
+    <Button
+        android:id="@+id/btn_confirm2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="확인"
+        />
+        <!--android:onClick="to_pedometer_Layout"-->
+
+    <TextView
+        android:id="@+id/selected_walk2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="test" />
+
+
+</LinearLayout>
