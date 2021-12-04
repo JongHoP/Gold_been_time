@@ -21,9 +21,12 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -135,7 +138,8 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
         circleBar();  //원형 프로세스 바
         timerOn();  //타이머
-    }
+}
+
 
     //원형 프로세스바
     public void circleBar(){
@@ -146,6 +150,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
                 return String.format(DEFAULT_PATTERN,steps, num);
             }
         };
+
         circleProgressBar.setProgressFormatter(progressFormatter);
         circleProgressBar.setProgressTextColor(ContextCompat.getColor(this, R.color.white_gray_color));
         circleProgressBar.setProgressBackgroundColor(ContextCompat.getColor(this, R.color.white_gray_color));
@@ -382,5 +387,25 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             toast.show();
         }
     }
+
+    public void run_contacts(View view){
+
+        ImageButton button_contacts;
+        button_contacts = (ImageButton)findViewById(R.id.imageButton2);
+
+        Intent contact_intent = new Intent(Intent.ACTION_DIAL);
+        startActivity(contact_intent);
+    }
+
+    public void run_message(View view){
+
+        ImageButton button_message;
+        button_message = (ImageButton) findViewById(R.id.imageButton3);
+
+        //Intent message_intent = new Intent(this.getPackageManager().getLaunchIntentForPackage("com.android.mms"));
+        Intent message_intent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.apps.messaging");
+        startActivity(message_intent);
+    }
+
 
 }
