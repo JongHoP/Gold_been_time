@@ -60,8 +60,8 @@ public class DayMainActivity extends AppCompatActivity{
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 TextView textView_time = (TextView)findViewById(R.id.textView_time);
 
-                                String time = "Hour: " + String.valueOf(hourOfDay) + "\n"
-                                        + "Minute: " + String.valueOf(minute);
+                                String time =  String.valueOf(hourOfDay) + "시 "
+                                         + String.valueOf(minute) + "분";
                                 Toast.makeText(DayMainActivity.this, time, Toast.LENGTH_LONG).show();
                                 textView_time.setText(time);
                             }
