@@ -13,11 +13,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f52a75bb-3550-4926-8796-2dcf16cc9344" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/calender.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/blink_text.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/DayMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/DayMainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/buttoncustom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/buttoncustom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/Complete.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testsplash/Complete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/combo_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/combo_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/complete.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/complete.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dayactivity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dayactivity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/pedometer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/pedometer.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -24,7 +24,7 @@ tools:layout_editor_absoluteY="8dp">
 
     <TextView
         android:id="@+id/textView_date"
-        android:layout_width="350dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text=""
@@ -54,7 +54,7 @@ tools:layout_editor_absoluteY="8dp">
 
     <TextView
         android:id="@+id/textView_time"
-        android:layout_width="350dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text=""
