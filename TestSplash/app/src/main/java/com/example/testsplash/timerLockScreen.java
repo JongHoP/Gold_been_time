@@ -1,5 +1,6 @@
 package com.example.testsplash;
 
+import static android.content.ContentValues.TAG;
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
@@ -165,6 +166,20 @@ public class timerLockScreen extends Activity  {
                 if (second.length() == 1) {
                     second = "0" + second;
                 }
+
+                int temp1 = Integer.parseInt(min);
+                int temp2 = Integer.parseInt(time);
+                Log.e(TAG,"time = " + temp2);
+                Log.e(TAG,"min = " + temp1);
+
+                if (temp2 >= 10000) {
+                    temp2 = temp2 / 10000;
+                    int temp3 = temp1 / temp2;
+                    Log.e(TAG,"min / time = " + temp3);
+                    min = Integer.toString(temp3);
+                    Log.e(TAG,"min = " + min);
+                }
+
                 ex.setText(hour + ":" + min + ":" + second);
             }
 
