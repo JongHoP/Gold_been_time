@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class MainBeforeLock extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_before_lock);
+        randomThing();
         activity = MainBeforeLock.this;
     }
 
@@ -61,5 +63,16 @@ public class MainBeforeLock extends AppCompatActivity {
         lastTimeBackPressed = System.currentTimeMillis();
         Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
 
+    }
+
+    public void randomThing(){
+        TextView textView = (TextView) findViewById(R.id.content1);
+        String[] text = {"Time is Gold",
+                         "시간을 석섹스",
+                         "행복하자"};
+        int randomNum = (int)(Math.random() * text.length);
+
+        //textView.setText(text[randomNum]);
+        textView.setText("aaa");
     }
 }

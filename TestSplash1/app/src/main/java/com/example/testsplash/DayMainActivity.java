@@ -36,7 +36,7 @@ public class DayMainActivity extends AppCompatActivity{
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog dialog = new DatePickerDialog(DayMainActivity.this, callbackMethod, 2021, 10, 30);
+                DatePickerDialog dialog = new DatePickerDialog(DayMainActivity.this,  R.style.DayPickerTheme, callbackMethod, 2021, 10, 30);
                 dialog.show();
             }
         });
@@ -46,7 +46,7 @@ public class DayMainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog
-                        (DayMainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                        (DayMainActivity.this, R.style.TimePickerTheme, new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 TextView textView_time = (TextView)findViewById(R.id.textView_time);
