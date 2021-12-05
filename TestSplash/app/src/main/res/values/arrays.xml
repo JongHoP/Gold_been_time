@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="walk">
+        <item>5,000</item>
+        <item>10,000</item>
+        <item>15,000</item>
+        <item>20,000</item>
+        <item>직접입력</item>
+    </string-array>
+
+</resources>
