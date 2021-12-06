@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/line3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/main_before_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/content1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/temp"
+                    android:textSize="18sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/temp1"
+                    android:textSize="18sp">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:onClick="nextLayout2">
+
+                <ImageView
+                    android:id="@+id/walk"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/shoes" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/content4"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:paddingLeft="20dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:onClick="nextLayout5"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/timer"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/timer2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/content5"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:paddingLeft="20dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical">
+                <ViewFlipper
+                    android:id="@+id/image_slide"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/Samsung"
+                                    android:layout_width="165dp"
+                                    android:layout_height="49dp"
+                                    android:layout_marginEnd="228dp"
+                                    android:layout_marginBottom="72dp"
+                                    android:src="@drawable/samsung"
+                                    android:text="삼성자리"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/Apple"
+                                    android:layout_width="55dp"
+                                    android:layout_height="67dp"
+                                    android:layout_marginEnd="148dp"
+                                    android:layout_marginBottom="76dp"
+                                    android:src="@drawable/apple"
+                                    android:text="애플자리"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/Google"
+                                    android:layout_width="55dp"
+                                    android:layout_height="62dp"
+                                    android:layout_marginEnd="28dp"
+                                    android:layout_marginBottom="80dp"
+                                    android:src="@drawable/google"
+                                    android:text="구글자리"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent" />
+
+                                <TextView
+                                    android:layout_width="409dp"
+                                    android:layout_height="40dp"
+                                    android:text="나는 반드시 간다."
+                                    android:textSize="30dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    android:gravity="center"></TextView>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+                </ViewFlipper>
+                >
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

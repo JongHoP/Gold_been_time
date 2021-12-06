@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">골빈타임</string>
+    <string name="app_name2">Gold Being Time</string>
+    <string name="temp">짧은 인생은 시간의 낭비에 의해 더욱 짧아진다.</string>
+    <string name="temp1">- S.존슨 -</string>
+    <string name="content4">만보기 사용하기 </string>
+    <string name="content5">타이머 사용하기 </string>
+    <string name="content1">content1</string>
+    <string name="rec1">rec1</string>
+
+    <string name="content2">content</string>
+    <string name="rec2">rec</string>
+
+    <string name="content3">content</string>
+    <string name="rec3">rec</string>
+
+    <string name="walk">걸음수 설정</string>
+    <string name="time">시간 설정</string>
+
+    <string name="title">목표: </string>
+
+    <string name="time2">시간: </string>
+    <string name="cal">칼로리: </string>
+    <string name="timer">00:00:00</string>
+
+    <string name="accessibility_description">권한을 부여하면 잠금이 실행됩니다.</string>
+</resources>
