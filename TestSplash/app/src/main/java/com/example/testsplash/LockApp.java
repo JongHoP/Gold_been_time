@@ -3,6 +3,8 @@ package com.example.testsplash;
 import static android.content.ContentValues.TAG;
 
 import android.accessibilityservice.AccessibilityService;
+import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -16,48 +18,41 @@ public class LockApp extends AccessibilityService {
     private String packagename1 = "com.instagram.android";
     private String packagename2 = "com.google.android.youtube";
     private String packagename3 = "com.netflix.mediaclient";
-    private String packagename4 = "com.example.testsplash";
+    private String MyAppPkgName = "com.example.testsplash";
+    private String CallPkgName = "com.samsung.android.dialer";
+    private String MsgPkgName = "com.samsung.android.messaging";
     private String pkName;
     private boolean isMyApp = false;
+    private static boolean flag = false;
 
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Toast.makeText(getApplicationContext(), "Service Created", Toast.LENGTH_SHORT).show();
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
+
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        boolean denyApp = false;
-
-        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-            pkName = (String) event.getPackageName();
-            if (pkName.equals(event.getPackageName()) && isMyApp == false) {
-                Toast.makeText(this.getApplicationContext(), event.getPackageName() + "앱이 거부되었습니다", Toast.LENGTH_LONG);
-                if (!pkName.equals("com.example.testsplash")) {
-                    //gotoHome();
-                } else if (pkName.equals("com.example.testsplash")) {
-                    isMyApp = true;
+        if(flag == false) {
+            if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+                pkName = (String) event.getPackageName();
+                if (pkName.equals(event.getPackageName()) && isMyApp == false) {
+                    Toast.makeText(this.getApplicationContext(), event.getPackageName() + "앱이 거부되었습니다", Toast.LENGTH_LONG);
+                    if (!pkName.equals(MyAppPkgName) && !pkName.equals(CallPkgName) && !pkName.equals(MsgPkgName)) {
+                        gotoHome();
+                    } else if (pkName.equals(pkName.equals(MyAppPkgName) || pkName.equals(CallPkgName) || pkName.equals(MsgPkgName))) {
+                        isMyApp = true;
+                    }
+                } else if (pkName.equals(event.getPackageName()) && isMyApp == true) {
+                    isMyApp = false;
                 }
-            }else if (pkName.equals(event.getPackageName()) && isMyApp == true) {
-                isMyApp = false;
+                Log.e(TAG, "Catch Event Package Name : " + event.getPackageName());
+                Log.e(TAG, "Catch Event TEXT : " + event.getText());
+                Log.e(TAG, "Catch Event ContentDescription : " + event.getContentDescription());
+                Log.e(TAG, "Catch Event getSource : " + event.getSource());
+                Log.e(TAG, "=========================================================================");
             }
-//            if (packagename1.equals(event.getPackageName())) {
-//                Toast.makeText(this.getApplicationContext(), event.getPackageName() + "앱이 거부되었습니다", Toast.LENGTH_LONG);
-//                gotoHome();
-//            } else if (packagename2.equals(event.getPackageName())) {
-//                Toast.makeText(this.getApplicationContext(), event.getPackageName() + "앱이 거부되었습니다", Toast.LENGTH_LONG);
-//                gotoHome();
-//            } else if (packagename3.equals(event.getPackageName())) {
-//                Toast.makeText(this.getApplicationContext(), event.getPackageName() + "앱이 거부되었습니다", Toast.LENGTH_LONG);
-//                gotoHome();
-//            }
-            Log.e(TAG, "Catch Event Package Name : " + event.getPackageName());
-            Log.e(TAG, "Catch Event TEXT : " + event.getText());
-            Log.e(TAG, "Catch Event ContentDescription : " + event.getContentDescription());
-            Log.e(TAG, "Catch Event getSource : " + event.getSource());
-            Log.e(TAG, "=========================================================================");
+        }else {
+            return;
         }
     }
     private void gotoHome(){
@@ -75,9 +70,9 @@ public class LockApp extends AccessibilityService {
     public void onInterrupt() {
     }
 
-//    @Override
-//    public boolean onUnbind(Intent intent) {
-//
-//        return super.onUnbind(intent);
-//    }
+    @Override
+    public boolean onUnbind(Intent intent) {
+
+        return super.onUnbind(intent);
+    }
 }

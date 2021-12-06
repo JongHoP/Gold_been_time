@@ -1,11 +1,17 @@
 package com.example.testsplash;
 
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 public class ColorFragment extends Fragment {
@@ -16,6 +22,8 @@ public class ColorFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    TextView textView;
 
     public ColorFragment() {
         // Required empty public constructor
@@ -45,6 +53,13 @@ public class ColorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.viewfragment_color4, container, false);
+        View view = inflater.inflate(R.layout.viewfragment_color4, null);
+
+        textView = (TextView) view.findViewById(R.id.textView);
+        Spannable span = (Spannable) textView.getText();         //getText();
+        span.setSpan(new RelativeSizeSpan(1.5f), 4, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        //return inflater.inflate(R.layout.viewfragment_color4, container, false);
+        return view;
     }
 }

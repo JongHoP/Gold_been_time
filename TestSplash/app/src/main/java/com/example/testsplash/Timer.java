@@ -1,7 +1,5 @@
 package com.example.testsplash;
 
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,39 +11,31 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Pedometer extends AppCompatActivity {
-    String walk3;
-
-    String selected_walk;
-    public static Activity activity;
+public class Timer extends AppCompatActivity {
+    String selected_time;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         Button btn1;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pedometer);
-        setTitle("걸음수 설정 화면");
+        setContentView(R.layout.timer);
 
-        activity = Pedometer.this;
+        setTitle("시간 설정화면");
 
-        final String[] walk_arr = {"5000", "10000", "20000", "30000"};
+        final String[] time_arr = {"1분", "30분", "1시간", "2시간", "3시간"};
 
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner2);
 
         ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, walk_arr);
+                android.R.layout.simple_spinner_item, time_arr);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                walk3 = (String) spinner.getItemAtPosition(position);
-//                Toast.makeText(Pedometer.this, "선택된 아이템 : "
-//                        + spinner.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-                selected_walk = walk_arr[position];
+                selected_time = time_arr[position];
                 //Toast.makeText(Pedometer.this, selected_walk, Toast.LENGTH_LONG).show(); // 선택된 값을 selected_walk에 전달하는가 보는 테스튼
             }
 
@@ -55,14 +45,14 @@ public class Pedometer extends AppCompatActivity {
         });
 
 
-        btn1 = (Button) findViewById(R.id.btn_confirm1);
+        btn1 = (Button) findViewById(R.id.timer_btn);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String temp = selected_walk;
+                String temp = selected_time;
 
-                Intent myIntent1 = new Intent(getApplicationContext(),DayMainActivity.class);
-                myIntent1.putExtra("walk_value", temp);
+                Intent myIntent1 = new Intent(getApplicationContext(),DayMainActivity2.class);
+                myIntent1.putExtra("time_value", temp);
 
                 startActivity(myIntent1);
             }

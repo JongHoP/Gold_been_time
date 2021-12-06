@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         String tag = (String) layout.getTag();
 
 //        Toast.makeText(this, "클릭한 아이템: " + tag, Toast.LENGTH_SHORT).show();
-        Intent it = new Intent(this, TestCombo.class);
+        Intent it = new Intent(this, Timer.class);
         it.putExtra("it_tag", tag);
         startActivity(it);
     }

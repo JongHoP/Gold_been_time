@@ -8,14 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DayMainActivity extends AppCompatActivity{
+public class DayMainActivity2 extends AppCompatActivity{
     int hour = 0;
     int minute = 0;
     public static Activity activity;
@@ -30,13 +28,13 @@ public class DayMainActivity extends AppCompatActivity{
 
         this.InitializeView();
         this.InitializeListener();
-        activity = DayMainActivity.this;
+        activity = DayMainActivity2.this;
 
         Button btn1 = (Button) findViewById(R.id.btn_selectDate);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog dialog = new DatePickerDialog(DayMainActivity.this,  R.style.DayPickerTheme, callbackMethod, 2021, 10, 30);
+                DatePickerDialog dialog = new DatePickerDialog(DayMainActivity2.this,  R.style.DayPickerTheme, callbackMethod, 2021, 10, 30);
                 dialog.show();
             }
         });
@@ -46,7 +44,7 @@ public class DayMainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog
-                        (DayMainActivity.this, R.style.TimePickerTheme, new TimePickerDialog.OnTimeSetListener() {
+                        (DayMainActivity2.this, R.style.TimePickerTheme, new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 TextView textView_time = (TextView)findViewById(R.id.textView_time);
@@ -65,13 +63,13 @@ public class DayMainActivity extends AppCompatActivity{
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pedo_intent = new Intent(getApplicationContext(),pedometerLockScreen.class);
+                Intent time_intent = new Intent(getApplicationContext(),timerLockScreen.class);
                 Intent myIntent = getIntent();
 
-                String walk = myIntent.getExtras().getString("walk_value");
-                pedo_intent.putExtra("walk_value", walk);
+                String time = myIntent.getExtras().getString("time_value");
+                time_intent.putExtra("time_value", time);
 
-                startActivity(pedo_intent);
+                startActivity(time_intent);
 
             }
         });

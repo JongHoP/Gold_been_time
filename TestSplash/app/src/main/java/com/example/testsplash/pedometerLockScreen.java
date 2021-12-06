@@ -1,5 +1,7 @@
 package com.example.testsplash;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
@@ -21,9 +23,12 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,29 +41,35 @@ import androidx.core.content.ContextCompat;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class pedometerLockScreen extends Activity implements SensorEventListener { //
-
     private static final String DEFAULT_PATTERN = "%d"+ "/" +"%d";
+    public static Object activity2;
     private Activity activity;
-    String[] packageNameList;
     private boolean mIsBound;
+    private String current_time;
 
     Animation animation;
     ImageView imageView;
     BackRunnable runnable = new BackRunnable();
     private Thread timeThread = null;
-    TextView myOutput;
     TextView tv_sensor;
-    TextView goal_count;
     TextView time;
-    TextView kcal;
+    TextView getTv;
     TextView selected_walk;
     SensorManager sm;
     Sensor sensor_step_detector;
-    int steps = 19999;
+    int steps = 4999;
     CircleProgressBar circleProgressBar;
     private static Handler mHandler ;
     Long ell;  //타이머 시간(초로 계산하여 나옴)
@@ -74,38 +85,45 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
     // 마지막으로 뒤로 가기 버튼을 눌렀던 시간 저장
     private long backKeyPressedTime = 0;
-    // 첫 번째 뒤로 가기 버튼을 누를 때 표시
+    // 첫 번째 뒤로 가기 버튼을 누를 때 표시S
     private Toast toast;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    //접근성 서비스 객체생성
+    LockApp lock = new LockApp();
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_pedometer_main);
+        lock.setFlag(false); //잠금 활성화
 
+
+        //getTv = findViewById(R.id.getTime);
+        //getTv.setText(getTime());
 
         sm = (SensorManager)getSystemService(SENSOR_SERVICE);  //센서 매니저 생성
         sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  //스텝 감지 센서 등록
 
         circleProgressBar = findViewById(R.id.cpb_circlebar);
 
-        if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+        if(checkAccessibilityPermissions() == false) {
 
             requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
+            permissionCheck();
+            checkAccessibilityPermissions();
+            setAccessibilityPermissions();
+
         }
-        permissionCheck();
-        checkAccessibilityPermissions();
-        setAccessibilityPermissions();
 
         selected_walk = (TextView) findViewById(R.id.swalk); // 이전 화면에서 선택한 걸음을 받을 변수
         Intent myIntent = getIntent();
         String walk = myIntent.getExtras().getString("walk_value");
         selected_walk.setText(walk); // 받아온 걸음수를 selected_walk 텍스트 박스에 저장한다.
 
-        Toast.makeText(pedometerLockScreen.this, "선택된 아이템 : "
-                + walk, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(pedometerLockScreen.this, "선택된 아이템 : "
+//                + walk, Toast.LENGTH_SHORT).show();
 
         imageView = findViewById(R.id.imageView);
         imageView.setColorFilter(Color.parseColor("#0066cc"));
@@ -116,19 +134,6 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         tv_sensor = findViewById(R.id.sensor);
         tv_sensor.setText("0");  //걸음 수 초기화 및 출력
 
-
-
-//        sm = (SensorManager)getSystemService(SENSOR_SERVICE);  //센서 매니저 생성
-//        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  //스텝 감지 센서 등록
-//
-//        circleProgressBar = findViewById(R.id.cpb_circlebar);
-//
-//        if(ContextCompat.checkSelfPermission(this,
-//                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
-//
-//            requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
-//        }
-
         Thread thread = new Thread(runnable);
         thread.setDaemon(true);
         thread.start();
@@ -136,6 +141,22 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         circleBar();  //원형 프로세스 바
         timerOn();  //타이머
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String getTime(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
+
+        String getTime = dateFormat2.format(date);
+        Log.e(TAG, "current time is " + getTime);
+        return getTime;
+    }
+
+
+
 
     //원형 프로세스바
     public void circleBar(){
@@ -146,6 +167,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
                 return String.format(DEFAULT_PATTERN,steps, num);
             }
         };
+
         circleProgressBar.setProgressFormatter(progressFormatter);
         circleProgressBar.setProgressTextColor(ContextCompat.getColor(this, R.color.white_gray_color));
         circleProgressBar.setProgressBackgroundColor(ContextCompat.getColor(this, R.color.white_gray_color));
@@ -227,7 +249,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     public String getEllapse(){
         long now = SystemClock.elapsedRealtime();
         ell = now - mBaseTime;   //현재 시간과 지난 시간을 빼서 ell값을 구함함
-       String sEll = String.format("%02d:%02d:%02d", ell / 1000 / 60 / 60, ell / 1000 / 60, (ell/1000)%60);
+        String sEll = String.format("%02d:%02d:%02d", ell / 1000 / 60 / 60, ell / 1000 / 60, (ell/1000)%60);
         return sEll;
     }
 
@@ -245,13 +267,14 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             mStatus = RUNNING;
     }
 
+
     class BackRunnable implements Runnable{
         private boolean stopped=false;
         @Override
         public void run() {
             while(!stopped){   //!Thread.currentThread().isInterrupted()
                 circleBar();
-               // calKcal();
+                // calKcal();
                 try{
                     Thread.sleep(1000);
                 }catch(InterruptedException e){
@@ -264,36 +287,46 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         }
     }
 
-   private void permissionCheck() {
-       if (android.os.Build.VERSION.SDK_INT >= 23) {
-           int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-           ArrayList<String> arrayPermission = new ArrayList<String>();
+//    public class CurrentDateTime {
+//        private LocalTime time_now;
+//
+//        @RequiresApi(api = Build.VERSION_CODES.O)
+//        public LocalTime get_time() {
+//            time_now = LocalTime.now();
+//            return time_now;
+//        }
+//    }
 
-           if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-               arrayPermission.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-           }
+    private void permissionCheck() {
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            ArrayList<String> arrayPermission = new ArrayList<String>();
 
-           permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-           if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-               arrayPermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-           }
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                arrayPermission.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
 
-           if (arrayPermission.size() > 0) {
-               String strArray[] = new String[arrayPermission.size()];
-               strArray = arrayPermission.toArray(strArray);
-               ActivityCompat.requestPermissions(this, strArray, PERMISSION_REQUEST_CODE);
-           } else {
-               // Initialize 코드
-           }
-       }
-   }
+            permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                arrayPermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+
+            if (arrayPermission.size() > 0) {
+                String strArray[] = new String[arrayPermission.size()];
+                strArray = arrayPermission.toArray(strArray);
+                ActivityCompat.requestPermissions(this, strArray, PERMISSION_REQUEST_CODE);
+            } else {
+                // Initialize 코드
+            }
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch(requestCode) {
             case PERMISSION_REQUEST_CODE: {
                 if (grantResults.length < 1) {
-                    Toast.makeText(this, "Failed get permission", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "Failed get permission", Toast.LENGTH_SHORT).show();
                     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                     return ;
                 }
@@ -306,7 +339,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
                     }
                 }
 
-                Toast.makeText(this, "Permission is granted", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Permission is granted", Toast.LENGTH_SHORT).show();
                 // Initialize 코드
             }
             break;
@@ -329,6 +362,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
                 return true;
             }
         }
+
         return false;
     }
 
@@ -339,12 +373,12 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         permissionDialog.setPositiveButton("허용", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //접근성 화면으로 이동하기
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
                 return;
             }
         }).create().show();
     }
+
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
@@ -381,6 +415,42 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             toast = Toast.makeText(this,"이용해 주셔서 감사합니다.",Toast.LENGTH_LONG);
             toast.show();
         }
+    }
+
+    public void run_contacts(View view){
+
+        ImageButton button_contacts;
+        button_contacts = (ImageButton)findViewById(R.id.imageButton2);
+
+        Intent contact_intent = new Intent(Intent.ACTION_DIAL);
+        startActivity(contact_intent);
+    }
+
+    public void run_message(View view){
+
+        ImageButton button_message;
+        button_message = (ImageButton) findViewById(R.id.imageButton3);
+
+        //Intent message_intent = new Intent(this.getPackageManager().getLaunchIntentForPackage("com.android.mms"));
+        Intent message_intent = this.getPackageManager().getLaunchIntentForPackage("com.samsung.android.messaging");
+        startActivity(message_intent);
+    }
+
+    public void goto_home(View view){
+        new AlertDialog.Builder(pedometerLockScreen.this) // TestActivity 부분에는 현재 Activity의 이름 입력.
+                .setMessage("어딜 나갈라고!")     // 제목 부분 (직접 작성)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {      // 버튼1 (직접 작성)
+                    public void onClick(DialogInterface dialog, int which){
+                        //Toast.makeText(getApplicationContext(), "확인 누름", Toast.LENGTH_SHORT).show(); // 실행할 코드
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {     // 버튼2 (직접 작성)
+                    public void onClick(DialogInterface dialog, int which){
+                        //Toast.makeText(getApplicationContext(), "취소 누름", Toast.LENGTH_SHORT).show(); // 실행할 코드
+                    }
+                })
+                .show();
+
     }
 
 }

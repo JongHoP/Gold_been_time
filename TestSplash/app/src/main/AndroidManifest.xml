@@ -26,12 +26,15 @@
         <activity android:name=".Pedometer"/>
         <activity android:name=".TestListView"/>
         <activity android:name=".DynamicListView"/>
-        <activity android:name=".TestCombo"/>
+        <activity android:name=".Timer"/>
         <activity android:name=".SubActivity"/>
         <activity android:name=".DayMainActivity"/>
+        <activity android:name=".DayMainActivity2"/>
         <activity android:name=".TimeActivity"/>
         <activity android:name=".pedometerLockScreen"/>
+        <activity android:name=".timerLockScreen"/>
         <activity android:name=".Complete"/>
+        <service android:name=".PedometerService"></service>
 
         <service
             android:name=".LockApp"

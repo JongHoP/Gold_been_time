@@ -54,7 +54,7 @@
         android:paddingTop="150dp">
 
         <Button
-            android:id="@+id/btn_confirm1"
+            android:id="@+id/timer_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="확인"

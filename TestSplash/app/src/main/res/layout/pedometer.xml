@@ -5,16 +5,16 @@
     android:orientation="vertical"
     android:gravity="center">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="150dp"
+        android:orientation="vertical">
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="150dp"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/man1" />
-        </LinearLayout>
+            android:src="@drawable/man1" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,16 +48,16 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:gravity="center"
+        android:layout_height="100dp"
         android:orientation="vertical"
+        android:gravity="center"
         android:paddingTop="150dp"
         android:paddingBottom="250dp">
 
     </LinearLayout>
+
 
     <Button
         android:id="@+id/btn_confirm1"

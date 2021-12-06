@@ -1,9 +1,13 @@
 package com.example.testsplash;
 
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -23,6 +27,8 @@ public class Color2Fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TextView textView;
 
     public Color2Fragment() {
         // Required empty public constructor
@@ -60,6 +66,13 @@ public class Color2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.viewfragment_color5, container, false);
+        View view = inflater.inflate(R.layout.viewfragment_color5, null);
+
+        textView = (TextView) view.findViewById(R.id.textView1);
+        Spannable span1 = (Spannable) textView.getText();         //getText();
+        span1.setSpan(new RelativeSizeSpan(1.5f), 15, 18, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        //return inflater.inflate(R.layout.viewfragment_color5, container, false);
+        return view;
     }
 }
