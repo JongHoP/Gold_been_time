@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".AlarmActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
@@ -34,6 +34,7 @@
         <activity android:name=".pedometerLockScreen"/>
         <activity android:name=".timerLockScreen"/>
         <activity android:name=".Complete"/>
+<!--        <activity android:name=".AlarmActivity"/>-->
         <service android:name=".PedometerService"></service>
 
         <service
@@ -48,6 +49,7 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
         </service>
+        <receiver android:name=".AlertReceiver"/>
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

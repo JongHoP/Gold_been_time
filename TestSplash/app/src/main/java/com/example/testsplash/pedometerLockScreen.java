@@ -59,13 +59,13 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     private boolean mIsBound;
     private String current_time;
 
+
     Animation animation;
     ImageView imageView;
     BackRunnable runnable = new BackRunnable();
     private Thread timeThread = null;
     TextView tv_sensor;
     TextView time;
-    TextView getTv;
     TextView selected_walk;
     SensorManager sm;
     Sensor sensor_step_detector;
@@ -91,17 +91,57 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     //접근성 서비스 객체생성
     LockApp lock = new LockApp();
 
+    private SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm");
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_pedometer_main);
+        pedometerLockScreen pedolock = new pedometerLockScreen();
+
+        current_time = pedolock.getTime();
+        Log.e(TAG, "(String) 현재 시간 " + current_time);
+
+        String from = current_time;
+
+        Intent hourIntent = getIntent();
+        Intent minuteIntent = getIntent();
+        int hour = hourIntent.getExtras().getInt("hour_value");
+        int minute = minuteIntent.getExtras().getInt("minute_value");
+
+        int hour_from = hour;
+        int min_from = minute;
+
+        String hour_to = Integer.toString(hour_from);
+        String min_to = Integer.toString(min_from);
+
+        String mm = hour_to + ":" + min_to;
+
+        try {
+            Date to1 = dateFormat2.parse(from);
+            Log.e(TAG, "(Date) 현재 시간 " + to1);
+
+            try {
+                Date to2 = dateFormat2.parse(mm);
+                Log.e(TAG, "(Date) 사용자 지정시간 " + to2);
+
+                while(true){
+                    if(to1.before(to2)){
+                        System.out.println("현재시간 is before 사용자 지정시간");
+
+                    }else{
+                        System.out.println("현재시간 is after 사용자 지정시간");
+                        //lock.setFlag(false); //잠금 활성화
+                    }
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         lock.setFlag(false); //잠금 활성화
-
-
-        getTv = findViewById(R.id.getTime);
-        getTv.setText(getTime());
 
         sm = (SensorManager)getSystemService(SENSOR_SERVICE);  //센서 매니저 생성
         sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  //스텝 감지 센서 등록
@@ -149,12 +189,14 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         Date date = new Date(now);
 
         SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
+//        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm");
 
         String getTime = dateFormat2.format(date);
-        Log.e(TAG, "current time is " + getTime);
+//        Log.e(TAG, "current time is " + getTime);
         return getTime;
     }
+
+
 
     public void compare_time() {
     }
