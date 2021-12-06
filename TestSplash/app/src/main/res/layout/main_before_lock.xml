@@ -47,7 +47,8 @@
                     android:id="@+id/rec"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/rectangle" />
+                    android:src="@drawable/rectangle"
+                    app:tint="#FF2E2E32" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,6 +65,7 @@
                         android:text="만보기 사용"
                         android:paddingLeft="35dp"
                         android:textSize="30dp"
+                        android:textColor="@color/black"
                         android:layout_gravity="center"
                         />
 
@@ -91,7 +93,8 @@
                     android:id="@+id/rec2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/rectangle" />
+                    android:src="@drawable/rectangle"
+                    app:tint="#FF2E2E32" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,6 +107,7 @@
                         android:text="타이머 사용"
                         android:paddingLeft="45dp"
                         android:textSize="30dp"
+                        android:textColor="@color/black"
                         android:layout_gravity="center"/>
 
                     <ImageView
@@ -135,7 +139,8 @@
                     android:id="@+id/rec3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/rectangle"/>
+                    android:src="@drawable/rectangle"
+                    app:tint="#FF2E2E32"/>
 
 
                 <LinearLayout
