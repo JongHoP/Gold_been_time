@@ -4,6 +4,7 @@ import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
@@ -39,15 +41,21 @@ import androidx.core.content.ContextCompat;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import static android.content.ContentValues.TAG;
 
 public class pedometerLockScreen extends Activity implements SensorEventListener { //
     private static final String DEFAULT_PATTERN = "%d"+ "/" +"%d";
+
     public static Object activity2;
     private Activity activity;
     private boolean mIsBound;
+    private Intent intent;
 
+    private PedometerService mService;
 
     Animation animation;
     ImageView imageView;
@@ -124,7 +132,9 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
         circleBar();  //원형 프로세스 바
         timerOn();  //타이머
-}
+        intent = new Intent(this,PedometerService.class);
+
+    }
 
 
     //원형 프로세스바
@@ -374,6 +384,20 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         }
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String getTime(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
+
+        String getTime = dateFormat2.format(date);
+        Log.e(TAG, "current time is " + getTime);
+        return getTime;
+    }
+
     public void run_contacts(View view){
 
         ImageButton button_contacts;
@@ -391,6 +415,37 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         //Intent message_intent = new Intent(this.getPackageManager().getLaunchIntentForPackage("com.android.mms"));
         Intent message_intent = this.getPackageManager().getLaunchIntentForPackage("com.samsung.android.messaging");
         startActivity(message_intent);
+    }
+
+    public void pedometerback(){
+        startService(intent);
+        android.util.Log.i("Music Start Service","StartService()");
+    }
+
+    ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            PedometerService.LocalBinder binder = (PedometerService.LocalBinder) iBinder;
+            mService =binder.getService();
+            mIsBound = true;
+
+            Log.e("LOG", "onServiceConnected()");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            mService = null;
+            mIsBound = false;
+            Log.e("LOG", "onServiceDisconnected()");
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent intent = new Intent(this, PedometerService.class);
+        bindService(intent, conn, Context.BIND_AUTO_CREATE);
     }
 
 

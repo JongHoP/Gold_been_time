@@ -16,13 +16,14 @@ import java.util.List;
 public class MainBeforeLock extends AppCompatActivity {
     public static Activity activity;
     private long lastTimeBackPressed;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_before_lock);
-        randomThing();
         activity = MainBeforeLock.this;
+        randomThing();
     }
 
     public void nextLayout2(View v) {
@@ -66,7 +67,7 @@ public class MainBeforeLock extends AppCompatActivity {
     }
 
     public void randomThing(){
-        TextView textView = (TextView) findViewById(R.id.content1);
+        textView = (TextView) findViewById(R.id.content1);
         String[] text = {"Time is Gold",
                          "시간을 석섹스",
                          "행복하자"};
@@ -74,5 +75,9 @@ public class MainBeforeLock extends AppCompatActivity {
 
         //textView.setText(text[randomNum]);
         textView.setText("aaa");
+    }
+
+    public void scrollAnim(){
+
     }
 }
