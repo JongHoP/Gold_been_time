@@ -1,4 +1,4 @@
-com.example.testsplash
+com.example.Gold_Being_Time
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -1981,7 +1981,6 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
-id btnAdd
 id btn_confirm1
 id btn_confirm2
 id btn_selectDate
@@ -2062,7 +2061,6 @@ id easeInOut
 id easeOut
 id east
 id edit_query
-id edtItem
 id elastic
 id end
 id endToStart
@@ -2112,11 +2110,6 @@ id imageView2
 id imageView3
 id imageView4
 id imageView5
-id img1
-id img2
-id img3
-id img4
-id img5
 id immediateStop
 id included
 id info
@@ -2138,8 +2131,6 @@ id line3
 id line4
 id linear
 id listMode
-id listView1
-id listView2
 id list_item
 id ll1
 id main_before_scroll
@@ -2474,11 +2465,9 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_main
 layout activity_timepicker
 layout complete
 layout custom_dialog
-layout d_listview
 layout dayactivity_main
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2495,7 +2484,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout listview
 layout main_before_lock
 layout material_chip_input_combo
 layout material_clock_display
@@ -2571,9 +2559,6 @@ layout text_view_without_line_height
 layout timer
 layout timer_lock_screen
 layout viewactivity_main
-layout viewfragment_color1
-layout viewfragment_color2
-layout viewfragment_color3
 layout viewfragment_color4
 layout viewfragment_color5
 layout viewfragment_color6

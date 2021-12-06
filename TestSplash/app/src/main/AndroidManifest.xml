@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.Gold_Being_Time">
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.example.Gold_Being_Time.MainActivity"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.Gold_Being_Time.Pedometer"/>
+        <activity android:name="com.example.Gold_Being_Time.Timer"/>
+        <activity android:name="com.example.Gold_Being_Time.DayMainActivity"/>
+        <activity android:name="com.example.Gold_Being_Time.DayMainActivity2"/>
+        <activity android:name="com.example.Gold_Being_Time.pedometerLockScreen"/>
+        <activity android:name="com.example.Gold_Being_Time.timerLockScreen"/>
+        <activity android:name="com.example.Gold_Being_Time.Complete"/>
+        <activity android:name="com.example.Gold_Being_Time.SubActivity"/>
+        <service android:name="com.example.Gold_Being_Time.PedometerService"></service>
+
+        <service
+            android:name="com.example.Gold_Being_Time.LockApp"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+    </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--    만보기 센서 사용 권한 추가-->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.SET_PREFERRED_APPLICATIONS"
+        tools:ignore="ProtectedPermissions" />
+</manifest>

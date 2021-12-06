@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+   <!-- <translate
+        android:fromXDelta="0%p"
+        android:toXDelta="20%p"
+        android:duration="2000"
+        android:repeatCount="-1"
+        android:fillAfter="true" />-->
+
+    <rotate
+        android:interpolator="@android:anim/linear_interpolator"
+        android:repeatCount="infinite"
+        android:duration="4000"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:fromDegrees="360"
+        android:toDegrees="320"/>
+    <!-- android:fromXDelta="0%p" : 시작 위치 -->
+    <!-- android:toXDelta="30%p" : 종료 위치 -->
+    <!-- android:duration="2000" : 동작 시간 -->
+    <!-- android:repeatCount="-1" : 반복횟수(-1은 무한반복) -->
+    <!-- android:fillAfter="true" : 애니메이션 종료 후 위치 원상복귀 여부 -->
+</set>

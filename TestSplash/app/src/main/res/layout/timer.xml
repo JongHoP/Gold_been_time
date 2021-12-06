@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="150dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/timer" />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingTop="15dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="20dp">
+
+        <Spinner
+        android:id="@+id/spinner2"
+        android:background="@drawable/combo_background"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+        android:theme="@style/SpinnerTheme"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="60dp">
+
+<!--        <Button-->
+<!--            android:id="@+id/timer_btn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/buttoncustom"-->
+<!--            android:text="확인"-->
+<!--            android:width="20dp"-->
+<!--            android:height="10dp"/>-->
+
+        <Button
+            android:id="@+id/timer_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:width="20dp"
+            android:height="10dp"
+            android:background="@drawable/buttoncustom"
+            android:layout_marginTop="220dp"
+            android:text="확인"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</LinearLayout>

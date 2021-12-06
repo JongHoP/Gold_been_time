@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="150dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/man1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/walk"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingTop="25dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:gravity="center">
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:background="@drawable/combo_background"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:tooltipText="100dp"
+            android:theme="@style/SpinnerTheme"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="150dp"
+        android:paddingBottom="250dp">
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_confirm1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:width="20dp"
+        android:height="10dp"
+        android:background="@drawable/buttoncustom"
+        android:layout_marginTop="160dp"
+        android:text="확인"
+        android:textSize="20dp" />
+
+</LinearLayout>

@@ -25,7 +25,7 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.testsplash.MainActivity"
+            android:name="com.example.Gold_Being_Time.MainActivity"
             android:exported="true"
             android:theme="@style/SplashTheme" >
             <intent-filter>
@@ -34,22 +34,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.testsplash.MainBeforeLock" />
-        <activity android:name="com.example.testsplash.Pedometer" />
-        <activity android:name="com.example.testsplash.TestListView" />
-        <activity android:name="com.example.testsplash.DynamicListView" />
-        <activity android:name="com.example.testsplash.Timer" />
-        <activity android:name="com.example.testsplash.SubActivity" />
-        <activity android:name="com.example.testsplash.DayMainActivity" />
-        <activity android:name="com.example.testsplash.DayMainActivity2" />
-        <activity android:name="com.example.testsplash.TimeActivity" />
-        <activity android:name="com.example.testsplash.pedometerLockScreen" />
-        <activity android:name="com.example.testsplash.timerLockScreen" />
-        <activity android:name="com.example.testsplash.Complete" />
+        <activity android:name="com.example.Gold_Being_Time.Pedometer" />
+        <activity android:name="com.example.Gold_Being_Time.Timer" />
+        <activity android:name="com.example.Gold_Being_Time.DayMainActivity" />
+        <activity android:name="com.example.Gold_Being_Time.DayMainActivity2" />
+        <activity android:name="com.example.Gold_Being_Time.pedometerLockScreen" />
+        <activity android:name="com.example.Gold_Being_Time.timerLockScreen" />
+        <activity android:name="com.example.Gold_Being_Time.Complete" />
+        <activity android:name="com.example.Gold_Being_Time.SubActivity" />
 
-        <service android:name="com.example.testsplash.PedometerService" />
+        <service android:name="com.example.Gold_Being_Time.PedometerService" />
         <service
-            android:name="com.example.testsplash.LockApp"
+            android:name="com.example.Gold_Being_Time.LockApp"
             android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
             <intent-filter>

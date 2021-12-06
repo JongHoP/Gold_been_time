@@ -1,13 +1,5 @@
 [
     {
-        "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_d_listview.xml.flat",
-        "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\layout\\d_listview.xml"
-    },
-    {
-        "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_viewfragment_color1.xml.flat",
-        "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\layout\\viewfragment_color1.xml"
-    },
-    {
         "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\drawable_kakao.png.flat",
         "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\drawable\\kakao.png"
     },
@@ -98,10 +90,6 @@
     {
         "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
-        "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_dayactivity_main.xml.flat",
@@ -212,10 +200,6 @@
         "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\drawable\\background_splash.xml"
     },
     {
-        "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_viewfragment_color2.xml.flat",
-        "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\layout\\viewfragment_color2.xml"
-    },
-    {
         "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\drawable_home.png.flat",
         "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\drawable\\home.png"
     },
@@ -264,10 +248,6 @@
         "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\drawable\\samsung.jpg"
     },
     {
-        "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_listview.xml.flat",
-        "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\layout\\listview.xml"
-    },
-    {
         "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\drawable_timer.png.flat",
         "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\drawable\\timer.png"
     },
@@ -310,9 +290,5 @@
     {
         "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_main_before_lock.xml.flat",
         "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\layout\\main_before_lock.xml"
-    },
-    {
-        "merged": "D:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\merged_res\\debug\\layout_viewfragment_color3.xml.flat",
-        "source": "D:\\Android\\Gold_been_time\\TestSplash\\app\\src\\main\\res\\layout\\viewfragment_color3.xml"
     }
 ]
