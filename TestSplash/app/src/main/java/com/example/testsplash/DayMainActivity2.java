@@ -1,10 +1,13 @@
 package com.example.testsplash;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -26,9 +29,9 @@ public class DayMainActivity2 extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dayactivity_main);
 
+        activity = DayMainActivity2.this;
         this.InitializeView();
         this.InitializeListener();
-        activity = DayMainActivity2.this;
 
         Button btn1 = (Button) findViewById(R.id.btn_selectDate);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -48,10 +51,7 @@ public class DayMainActivity2 extends AppCompatActivity{
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 TextView textView_time = (TextView)findViewById(R.id.textView_time);
-
-                                String time =  String.valueOf(hourOfDay) + "시 "
-                                        + String.valueOf(minute) + "분";
-//                                Toast.makeText(DayMainActivity.this, time, Toast.LENGTH_LONG).show();
+                                String time =  String.valueOf(hourOfDay) + "시 " + String.valueOf(minute) + "분";
                                 textView_time.setText(time);
                             }
                         },hour, minute, false);
@@ -75,10 +75,6 @@ public class DayMainActivity2 extends AppCompatActivity{
         });
 
     }
-    //    @Override
-//    public void onBackPressed() {
-//        //super.onBackPressed();
-//    }
     public void InitializeView()
     {
         textView_Date = (TextView)findViewById(R.id.textView_date);

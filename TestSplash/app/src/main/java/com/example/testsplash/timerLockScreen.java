@@ -37,6 +37,8 @@ public class timerLockScreen extends Activity  {
     private static final int PERMISSION_REQUEST_CODE = 1000;
     private Toast toast;
     private long backKeyPressedTime = 0;
+
+    //접근성 서비스 객체생성
     LockApp lock = new LockApp();
 
     TextView selected_time;
@@ -59,10 +61,9 @@ public class timerLockScreen extends Activity  {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timer_lock_screen);
-        lock.setFlag(false);
-        //splitGoal = (TextView) findViewById(R.id.tv2);
-        circleProgressBar = findViewById(R.id.cpb_circlebar);
 
+        lock.setFlag(false); //잠금 활성화
+        circleProgressBar = findViewById(R.id.cpb_circlebar);
 
         Thread thread = new Thread(runnable);
         thread.setDaemon(true);

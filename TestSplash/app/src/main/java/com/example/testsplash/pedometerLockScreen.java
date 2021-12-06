@@ -1,5 +1,7 @@
 package com.example.testsplash;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
@@ -39,7 +41,15 @@ import androidx.core.content.ContextCompat;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class pedometerLockScreen extends Activity implements SensorEventListener { //
@@ -47,7 +57,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     public static Object activity2;
     private Activity activity;
     private boolean mIsBound;
-
+    private String current_time;
 
     Animation animation;
     ImageView imageView;
@@ -55,6 +65,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     private Thread timeThread = null;
     TextView tv_sensor;
     TextView time;
+    TextView getTv;
     TextView selected_walk;
     SensorManager sm;
     Sensor sensor_step_detector;
@@ -74,17 +85,23 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
     // 마지막으로 뒤로 가기 버튼을 눌렀던 시간 저장
     private long backKeyPressedTime = 0;
-    // 첫 번째 뒤로 가기 버튼을 누를 때 표시
+    // 첫 번째 뒤로 가기 버튼을 누를 때 표시S
     private Toast toast;
+
+    //접근성 서비스 객체생성
     LockApp lock = new LockApp();
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_pedometer_main);
-        lock.setFlag(false);
+        lock.setFlag(false); //잠금 활성화
+
+
+        getTv = findViewById(R.id.getTime);
+        getTv.setText(getTime());
 
         sm = (SensorManager)getSystemService(SENSOR_SERVICE);  //센서 매니저 생성
         sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  //스텝 감지 센서 등록
@@ -125,6 +142,22 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         circleBar();  //원형 프로세스 바
         timerOn();  //타이머
 }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String getTime(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
+
+        String getTime = dateFormat2.format(date);
+        Log.e(TAG, "current time is " + getTime);
+        return getTime;
+    }
+
+    public void compare_time() {
+    }
 
 
     //원형 프로세스바
@@ -236,6 +269,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             mStatus = RUNNING;
     }
 
+
     class BackRunnable implements Runnable{
         private boolean stopped=false;
         @Override
@@ -254,6 +288,16 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             stopped=true;
         }
     }
+
+//    public class CurrentDateTime {
+//        private LocalTime time_now;
+//
+//        @RequiresApi(api = Build.VERSION_CODES.O)
+//        public LocalTime get_time() {
+//            time_now = LocalTime.now();
+//            return time_now;
+//        }
+//    }
 
    private void permissionCheck() {
        if (android.os.Build.VERSION.SDK_INT >= 23) {
@@ -392,6 +436,5 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         Intent message_intent = this.getPackageManager().getLaunchIntentForPackage("com.samsung.android.messaging");
         startActivity(message_intent);
     }
-
 
 }
