@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.testsplash">
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MainBeforeLock"/>
+        <activity android:name=".Pedometer"/>
+        <activity android:name=".TestListView"/>
+        <activity android:name=".DynamicListView"/>
+        <activity android:name=".Timer"/>
+        <activity android:name=".SubActivity"/>
+        <activity android:name=".DayMainActivity"/>
+        <activity android:name=".DayMainActivity2"/>
+        <activity android:name=".TimeActivity"/>
+        <activity android:name=".pedometerLockScreen"/>
+        <activity android:name=".timerLockScreen"/>
+        <activity android:name=".Complete"/>
+<!--        <activity android:name=".AlarmActivity"/>-->
+        <service android:name=".PedometerService"></service>
+
+        <service
+            android:name=".LockApp"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+        <receiver android:name=".AlertReceiver"/>
+    </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--    만보기 센서 사용 권한 추가-->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.SET_PREFERRED_APPLICATIONS"
+        tools:ignore="ProtectedPermissions" />
+</manifest>
