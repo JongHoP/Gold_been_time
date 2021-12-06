@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\User\\Documents\\Github\\Gold_been_time\\TestSplash1\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
+            "outputFile": "C:\\Users\\User\\Documents\\Github\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\8b532ec339b2e56917562d015bc00c2d\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",

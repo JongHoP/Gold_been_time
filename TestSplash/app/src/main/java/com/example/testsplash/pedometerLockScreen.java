@@ -1,10 +1,11 @@
 package com.example.testsplash;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,7 +20,6 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
@@ -41,21 +41,23 @@ import androidx.core.content.ContextCompat;
 
 import com.dinuscxj.progressbar.CircleProgressBar;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import static android.content.ContentValues.TAG;
 
 public class pedometerLockScreen extends Activity implements SensorEventListener { //
     private static final String DEFAULT_PATTERN = "%d"+ "/" +"%d";
-
     public static Object activity2;
     private Activity activity;
     private boolean mIsBound;
-    private Intent intent;
-
-    private PedometerService mService;
+    private String current_time;
 
     Animation animation;
     ImageView imageView;
@@ -63,10 +65,11 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     private Thread timeThread = null;
     TextView tv_sensor;
     TextView time;
+    TextView getTv;
     TextView selected_walk;
     SensorManager sm;
     Sensor sensor_step_detector;
-    int steps = 19999;
+    int steps = 4999;
     CircleProgressBar circleProgressBar;
     private static Handler mHandler ;
     Long ell;  //타이머 시간(초로 계산하여 나옴)
@@ -82,32 +85,37 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
     // 마지막으로 뒤로 가기 버튼을 눌렀던 시간 저장
     private long backKeyPressedTime = 0;
-    // 첫 번째 뒤로 가기 버튼을 누를 때 표시
+    // 첫 번째 뒤로 가기 버튼을 누를 때 표시S
     private Toast toast;
+
+    //접근성 서비스 객체생성
     LockApp lock = new LockApp();
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.run_pedometer_main);
-        lock.setFlag(false);
+        lock.setFlag(false); //잠금 활성화
+
+
+        //getTv = findViewById(R.id.getTime);
+        //getTv.setText(getTime());
 
         sm = (SensorManager)getSystemService(SENSOR_SERVICE);  //센서 매니저 생성
         sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  //스텝 감지 센서 등록
 
         circleProgressBar = findViewById(R.id.cpb_circlebar);
 
-        if(ContextCompat.checkSelfPermission(this,
-
-                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+        if(checkAccessibilityPermissions() == false) {
 
             requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
+            permissionCheck();
+            checkAccessibilityPermissions();
+            setAccessibilityPermissions();
+
         }
-        permissionCheck();
-        checkAccessibilityPermissions();
-        setAccessibilityPermissions();
 
         selected_walk = (TextView) findViewById(R.id.swalk); // 이전 화면에서 선택한 걸음을 받을 변수
         Intent myIntent = getIntent();
@@ -132,9 +140,22 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
 
         circleBar();  //원형 프로세스 바
         timerOn();  //타이머
-        intent = new Intent(this,PedometerService.class);
-
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String getTime(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
+
+        String getTime = dateFormat2.format(date);
+        Log.e(TAG, "current time is " + getTime);
+        return getTime;
+    }
+
+
 
 
     //원형 프로세스바
@@ -228,7 +249,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
     public String getEllapse(){
         long now = SystemClock.elapsedRealtime();
         ell = now - mBaseTime;   //현재 시간과 지난 시간을 빼서 ell값을 구함함
-       String sEll = String.format("%02d:%02d:%02d", ell / 1000 / 60 / 60, ell / 1000 / 60, (ell/1000)%60);
+        String sEll = String.format("%02d:%02d:%02d", ell / 1000 / 60 / 60, ell / 1000 / 60, (ell/1000)%60);
         return sEll;
     }
 
@@ -246,13 +267,14 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
             mStatus = RUNNING;
     }
 
+
     class BackRunnable implements Runnable{
         private boolean stopped=false;
         @Override
         public void run() {
             while(!stopped){   //!Thread.currentThread().isInterrupted()
                 circleBar();
-               // calKcal();
+                // calKcal();
                 try{
                     Thread.sleep(1000);
                 }catch(InterruptedException e){
@@ -265,29 +287,39 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         }
     }
 
-   private void permissionCheck() {
-       if (android.os.Build.VERSION.SDK_INT >= 23) {
-           int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-           ArrayList<String> arrayPermission = new ArrayList<String>();
+//    public class CurrentDateTime {
+//        private LocalTime time_now;
+//
+//        @RequiresApi(api = Build.VERSION_CODES.O)
+//        public LocalTime get_time() {
+//            time_now = LocalTime.now();
+//            return time_now;
+//        }
+//    }
 
-           if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-               arrayPermission.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-           }
+    private void permissionCheck() {
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            ArrayList<String> arrayPermission = new ArrayList<String>();
 
-           permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-           if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-               arrayPermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-           }
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                arrayPermission.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
 
-           if (arrayPermission.size() > 0) {
-               String strArray[] = new String[arrayPermission.size()];
-               strArray = arrayPermission.toArray(strArray);
-               ActivityCompat.requestPermissions(this, strArray, PERMISSION_REQUEST_CODE);
-           } else {
-               // Initialize 코드
-           }
-       }
-   }
+            permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                arrayPermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+
+            if (arrayPermission.size() > 0) {
+                String strArray[] = new String[arrayPermission.size()];
+                strArray = arrayPermission.toArray(strArray);
+                ActivityCompat.requestPermissions(this, strArray, PERMISSION_REQUEST_CODE);
+            } else {
+                // Initialize 코드
+            }
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -330,6 +362,7 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
                 return true;
             }
         }
+
         return false;
     }
 
@@ -340,12 +373,12 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         permissionDialog.setPositiveButton("허용", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //접근성 화면으로 이동하기
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
                 return;
             }
         }).create().show();
     }
+
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
@@ -384,20 +417,6 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         }
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private String getTime(){
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-
-        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
-
-        String getTime = dateFormat2.format(date);
-        Log.e(TAG, "current time is " + getTime);
-        return getTime;
-    }
-
     public void run_contacts(View view){
 
         ImageButton button_contacts;
@@ -417,36 +436,21 @@ public class pedometerLockScreen extends Activity implements SensorEventListener
         startActivity(message_intent);
     }
 
-    public void pedometerback(){
-        startService(intent);
-        android.util.Log.i("Music Start Service","StartService()");
+    public void goto_home(View view){
+        new AlertDialog.Builder(pedometerLockScreen.this) // TestActivity 부분에는 현재 Activity의 이름 입력.
+                .setMessage("어딜 나갈라고!")     // 제목 부분 (직접 작성)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {      // 버튼1 (직접 작성)
+                    public void onClick(DialogInterface dialog, int which){
+                        //Toast.makeText(getApplicationContext(), "확인 누름", Toast.LENGTH_SHORT).show(); // 실행할 코드
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {     // 버튼2 (직접 작성)
+                    public void onClick(DialogInterface dialog, int which){
+                        //Toast.makeText(getApplicationContext(), "취소 누름", Toast.LENGTH_SHORT).show(); // 실행할 코드
+                    }
+                })
+                .show();
+
     }
-
-    ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            PedometerService.LocalBinder binder = (PedometerService.LocalBinder) iBinder;
-            mService =binder.getService();
-            mIsBound = true;
-
-            Log.e("LOG", "onServiceConnected()");
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            mService = null;
-            mIsBound = false;
-            Log.e("LOG", "onServiceDisconnected()");
-        }
-    };
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        Intent intent = new Intent(this, PedometerService.class);
-        bindService(intent, conn, Context.BIND_AUTO_CREATE);
-    }
-
 
 }

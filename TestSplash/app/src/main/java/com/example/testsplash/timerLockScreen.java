@@ -1,6 +1,8 @@
 package com.example.testsplash;
 
+import static android.content.ContentValues.TAG;
 import android.Manifest;
+import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,6 +16,7 @@ import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -29,13 +32,16 @@ import com.dinuscxj.progressbar.CircleProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-public class timerLockScreen extends Activity  {
+public class timerLockScreen extends Activity {
 
     private static final String DEFAULT_PATTERN = "%s"+ ":" +"%s" + ":" + "%s" ;
     private static final int PERMISSION_REQUEST_CODE = 1000;
     private Toast toast;
     private long backKeyPressedTime = 0;
+
+    //접근성 서비스 객체생성
     LockApp lock = new LockApp();
 
     TextView selected_time;
@@ -58,23 +64,31 @@ public class timerLockScreen extends Activity  {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timer_lock_screen);
-        lock.setFlag(false);
-        //splitGoal = (TextView) findViewById(R.id.tv2);
-        circleProgressBar = findViewById(R.id.cpb_circlebar);
 
+        lock.setFlag(false); //잠금 활성화
+        circleProgressBar = findViewById(R.id.cpb_circlebar);
 
         Thread thread = new Thread(runnable);
         thread.setDaemon(true);
         thread.start();
 
-        if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+        if(checkAccessibilityPermissions() == false) {
 
             requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
+            permissionCheck();
+            checkAccessibilityPermissions();
+            setAccessibilityPermissions();
+
         }
-        permissionCheck();
-        checkAccessibilityPermissions();
-        setAccessibilityPermissions();
+
+//        if(ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+//
+//            requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
+//        }
+//        permissionCheck();
+//        checkAccessibilityPermissions();
+//        setAccessibilityPermissions();
 
         selected_time = (TextView) findViewById(R.id.tv2); // 이전 화면에서 선택한 걸음을 받을 변수
         Intent myIntent = getIntent();
@@ -94,14 +108,14 @@ public class timerLockScreen extends Activity  {
             if(Integer.parseInt(goalNum)< 10){
                 goall = "0" + goalNum + "0000";
             } else
-            goall = goalNum + "0000";
+                goall = goalNum + "0000";
         }else if(goal.indexOf("분")>0){
             goalNum = goal.substring(0, goal.indexOf("분"));
             if(Integer.parseInt(goalNum) < 10 && Integer.parseInt(goalNum) >0){
                 goall = "000" + goalNum + "00";
                 System.out.println("goall " + goall);
             } else
-            goall = "00" + goalNum + "00";
+                goall = "00" + goalNum + "00";
         }
 //        Toast.makeText(this, goalNum, Toast.LENGTH_SHORT).show();
         return goall;
@@ -165,7 +179,21 @@ public class timerLockScreen extends Activity  {
                 if (second.length() == 1) {
                     second = "0" + second;
                 }
-                ex.setText(hour + ":" + min + ":" + second);
+
+                int temp1 = Integer.parseInt(min);
+                int temp2 = Integer.parseInt(time);
+                Log.e(TAG,"time = " + temp2);
+                Log.e(TAG,"min = " + temp1);
+
+                if (temp2 >= 10000) {
+                    temp2 = temp2 / 10000;
+                    int temp3 = temp1 / temp2;
+                    Log.e(TAG,"min / time = " + temp3);
+                    min = Integer.toString(temp3);
+                    Log.e(TAG,"min = " + min);
+                }
+
+                //ex.setText(hour + ":" + min + ":" + second);
             }
 
             // 제한시간 종료시
@@ -179,11 +207,11 @@ public class timerLockScreen extends Activity  {
         }.start();
     }
 
-    
-    
+
+
     public void circleBar(){
-       // splitGoal = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
-       // int num = Integer.parseInt(splitGoal.getText().toString());
+        // splitGoal = (TextView)findViewById(R.id.tv2);  //목표 값 가져오기
+        // int num = Integer.parseInt(splitGoal.getText().toString());
         CircleProgressBar.ProgressFormatter progressFormatter = new CircleProgressBar.ProgressFormatter() {
             @Override
             public CharSequence format(int progress, int max) {
@@ -210,6 +238,10 @@ public class timerLockScreen extends Activity  {
         circleProgressBar.setProgress(100);
         circleProgressBar.setStartDegree(degree);
     }
+
+
+
+
     private void permissionCheck() {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -261,6 +293,25 @@ public class timerLockScreen extends Activity  {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+//    public boolean checkAccessibilityPermissions(){
+//        AccessibilityManager accessibilityManager =
+//                (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE);
+//
+//        List<AccessibilityServiceInfo> list =
+//                accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
+//
+//        Log.d("service_test", "size : " + list.size());
+//        for(int i = 0; i < list.size(); i++){
+//            AccessibilityServiceInfo info = list.get(i);
+//            if(info.getResolveInfo().serviceInfo.packageName.equals(getApplication().getPackageName())){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+    // 접근성 권한이 있는지 없는지 확인하는 부분
+    // 있으면 true, 없으면 false
     public boolean checkAccessibilityPermissions(){
         AccessibilityManager accessibilityManager =
                 (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE);
@@ -275,6 +326,7 @@ public class timerLockScreen extends Activity  {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -285,12 +337,12 @@ public class timerLockScreen extends Activity  {
         permissionDialog.setPositiveButton("허용", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //접근성 화면으로 이동하기
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
                 return;
             }
         }).create().show();
     }
+
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
@@ -346,6 +398,39 @@ public class timerLockScreen extends Activity  {
         startActivity(message_intent);
     }
 
+    public void goto_home(View view){
+        new AlertDialog.Builder(timerLockScreen.this) // TestActivity 부분에는 현재 Activity의 이름 입력.
+                .setMessage("어딜 나갈라고!")     // 제목 부분 (직접 작성)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {      // 버튼1 (직접 작성)
+                    public void onClick(DialogInterface dialog, int which){
+                        //Toast.makeText(getApplicationContext(), "확인 누름", Toast.LENGTH_SHORT).show(); // 실행할 코드
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {     // 버튼2 (직접 작성)
+                    public void onClick(DialogInterface dialog, int which){
+                        //Toast.makeText(getApplicationContext(), "취소 누름", Toast.LENGTH_SHORT).show(); // 실행할 코드
+                    }
+                })
+                .show();
+
+    }
+
+    public void onAccessibilityEvent(AccessibilityEvent event) {
+        boolean denyApp = false;
+        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            if(this.getPackageName().equals(event.getPackageName())) {
+                Toast.makeText(this.getApplicationContext(), event.getPackageName() + "앱이 거부되었습니다", Toast.LENGTH_LONG);
+                //gotoHome();
+            }
+
+//            Log.e(TAG, "Catch Event Package Name : " + event.getPackageName());
+//            Log.e(TAG, "Catch Event TEXT : " + event.getText());
+//            Log.e(TAG, "Catch Event ContentDescription : " + event.getContentDescription());
+//            Log.e(TAG, "Catch Event getSource : " + event.getSource());
+//            Log.e(TAG, "=========================================================================");
+        }
+    }
+
     class BRunnable implements Runnable{
         private boolean stopped=false;
         @Override
@@ -366,4 +451,3 @@ public class timerLockScreen extends Activity  {
 
     }
 }
-

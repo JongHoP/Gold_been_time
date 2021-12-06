@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\User\\Documents\\Github\\Gold_been_time\\TestSplash1\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bg\\values-bg.xml",
+            "outputFile": "C:\\Users\\User\\Documents\\Github\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bg\\values-bg.xml",
             "map": [
                 {
                     "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\395469efc59b8bace0152de7682f1166\\transformed\\material-1.4.0\\res\\values-bg\\values-bg.xml",

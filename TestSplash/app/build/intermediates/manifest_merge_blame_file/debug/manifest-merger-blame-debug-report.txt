@@ -6,122 +6,122 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml
+8-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="31" />
-9-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml
+9-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-11-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:52:5-79
-11-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:52:22-77
+11-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:52:5-79
+11-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:52:22-77
 12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-12-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:53:5-80
-12-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:53:22-78
+12-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:53:5-80
+12-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:53:22-78
 13    <!-- 만보기 센서 사용 권한 추가 -->
 14    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
-14-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:55:5-78
-14-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:55:22-76
+14-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:55:5-78
+14-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:55:22-76
 15    <uses-permission android:name="android.permission.SET_PREFERRED_APPLICATIONS" />
-15-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:56:5-57:47
-15-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:56:22-82
+15-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:56:5-57:47
+15-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:56:22-82
 16
 17    <application
-17-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:7:5-51:19
+17-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:7:5-51:19
 18        android:allowBackup="true"
-18-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:8:9-35
+18-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:8:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 19-->[androidx.core:core:1.5.0] C:\Users\User\.gradle\caches\transforms-3\a1493cf7472f311ab0a2a548a454f9d4\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
 20        android:debuggable="true"
 21        android:icon="@mipmap/ic_launcher"
-21-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:9:9-43
+21-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:9:9-43
 22        android:label="@string/app_name"
-22-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:10:9-41
+22-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:10:9-41
 23        android:roundIcon="@mipmap/ic_launcher_round"
-23-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:11:9-54
+23-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:11:9-54
 24        android:supportsRtl="true"
-24-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:12:9-35
+24-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:12:9-35
 25        android:testOnly="true"
 26        android:theme="@style/AppTheme" >
-26-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:13:9-40
+26-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:13:9-40
 27        <activity
-27-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:14:9-23:20
+27-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:14:9-23:20
 28            android:name="com.example.testsplash.MainActivity"
-28-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:15:13-41
+28-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:15:13-41
 29            android:exported="true"
-29-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:17:13-36
+29-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:17:13-36
 30            android:theme="@style/SplashTheme" >
-30-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:16:13-47
+30-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:16:13-47
 31            <intent-filter>
-31-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:18:13-22:29
+31-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:18:13-22:29
 32                <action android:name="android.intent.action.MAIN" />
-32-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:19:17-69
-32-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:19:25-66
+32-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:19:17-69
+32-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:19:25-66
 33
 34                <category android:name="android.intent.category.LAUNCHER" />
-34-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:21:17-77
-34-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:21:27-74
+34-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:21:17-77
+34-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:21:27-74
 35            </intent-filter>
 36        </activity>
 37        <activity android:name="com.example.testsplash.MainBeforeLock" />
-37-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:25:9-51
-37-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:25:19-49
+37-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:25:9-51
+37-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:25:19-49
 38        <activity android:name="com.example.testsplash.Pedometer" />
-38-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:26:9-46
-38-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:26:19-44
+38-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:26:9-46
+38-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:26:19-44
 39        <activity android:name="com.example.testsplash.TestListView" />
-39-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:27:9-49
-39-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:27:19-47
+39-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:27:9-49
+39-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:27:19-47
 40        <activity android:name="com.example.testsplash.DynamicListView" />
-40-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:28:9-52
-40-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:28:19-50
+40-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:28:9-52
+40-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:28:19-50
 41        <activity android:name="com.example.testsplash.Timer" />
-41-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:29:9-42
-41-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:29:19-40
+41-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:29:9-42
+41-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:29:19-40
 42        <activity android:name="com.example.testsplash.SubActivity" />
-42-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:30:9-48
-42-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:30:19-46
+42-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:30:9-48
+42-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:30:19-46
 43        <activity android:name="com.example.testsplash.DayMainActivity" />
-43-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:31:9-52
-43-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:31:19-50
+43-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:31:9-52
+43-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:31:19-50
 44        <activity android:name="com.example.testsplash.DayMainActivity2" />
-44-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:32:9-53
-44-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:32:19-51
+44-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:32:9-53
+44-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:32:19-51
 45        <activity android:name="com.example.testsplash.TimeActivity" />
-45-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:33:9-49
-45-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:33:19-47
+45-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:33:9-49
+45-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:33:19-47
 46        <activity android:name="com.example.testsplash.pedometerLockScreen" />
-46-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:34:9-56
-46-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:34:19-54
+46-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:34:9-56
+46-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:34:19-54
 47        <activity android:name="com.example.testsplash.timerLockScreen" />
-47-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:35:9-52
-47-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:35:19-50
+47-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:35:9-52
+47-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:35:19-50
 48        <activity android:name="com.example.testsplash.Complete" />
-48-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:36:9-45
-48-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:36:19-43
+48-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:36:9-45
+48-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:36:19-43
 49
 50        <service android:name="com.example.testsplash.PedometerService" />
-50-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:37:9-61
-50-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:37:18-50
+50-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:37:9-61
+50-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:37:18-50
 51        <service
-51-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:39:9-50:19
+51-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:39:9-50:19
 52            android:name="com.example.testsplash.LockApp"
-52-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:40:13-36
+52-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:40:13-36
 53            android:exported="false"
-53-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:42:13-37
+53-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:42:13-37
 54            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
-54-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:41:13-79
+54-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:41:13-79
 55            <intent-filter>
-55-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:43:13-45:29
+55-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:43:13-45:29
 56                <action android:name="android.accessibilityservice.AccessibilityService" />
-56-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:44:17-92
-56-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:44:25-89
+56-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:44:17-92
+56-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:44:25-89
 57            </intent-filter>
 58
 59            <meta-data
-59-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:47:13-49:72
+59-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:47:13-49:72
 60                android:name="android.accessibilityservice"
-60-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:48:17-60
+60-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:48:17-60
 61                android:resource="@xml/accessibility_service_config" />
-61-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash1\app\src\main\AndroidManifest.xml:49:17-69
+61-->C:\Users\User\Documents\Github\Gold_been_time\TestSplash\app\src\main\AndroidManifest.xml:49:17-69
 62        </service>
 63    </application>
 64
