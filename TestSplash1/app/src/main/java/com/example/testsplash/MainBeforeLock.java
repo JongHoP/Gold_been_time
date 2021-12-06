@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,13 +21,50 @@ public class MainBeforeLock extends AppCompatActivity {
     public static Activity activity;
     private long lastTimeBackPressed;
     TextView textView;
+    ViewFlipper v_fllipper;
+    Animation anim;
+    ImageView anim_imageview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_before_lock);
-        activity = MainBeforeLock.this;
         randomThing();
+        /*anim_imageview = (ImageView) findViewById(R.id.imageView7);
+        anim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_in_left1);
+        anim_imageview.startAnimation(anim);*/
+        activity = MainBeforeLock.this;
+
+
+    /*    int images[] = {
+                R.drawable.kakao,
+                R.drawable.sam
+        };
+
+        v_fllipper = findViewById(R.id.image_slide);
+
+        for(int image : images) {
+            fllipperImages(image);
+        }*/
+
+    }
+
+    public void ima (){
+
+    }
+
+    public void fllipperImages(int image) {
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource(image);
+
+        v_fllipper.addView(imageView);      // 이미지 추가
+        v_fllipper.setFlipInterval(4000);       // 자동 이미지 슬라이드 딜레이시간(1000 당 1초)
+        v_fllipper.setAutoStart(true);          // 자동 시작 유무 설정
+        v_fllipper.startFlipping();
+        // animation
+        v_fllipper.setInAnimation(this,android.R.anim.slide_in_left);
+        v_fllipper.setOutAnimation(this,android.R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_left1, R.anim.slide_out_right);
     }
 
     public void nextLayout2(View v) {
