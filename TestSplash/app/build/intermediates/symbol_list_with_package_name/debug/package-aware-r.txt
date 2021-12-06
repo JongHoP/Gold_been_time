@@ -33,6 +33,8 @@ anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
 anim shake_shoe
+anim slide_in_left1
+anim slide_out_right
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -1784,6 +1786,7 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable alarmpic
+drawable apple
 drawable avd_hide_password
 drawable avd_show_password
 drawable back
@@ -1809,6 +1812,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable ecircle
 drawable fcircle
+drawable google
 drawable home
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
@@ -1820,6 +1824,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable img
 drawable img_1
+drawable kakao
 drawable man1
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
@@ -1859,6 +1864,8 @@ drawable notify_panel_notification_icon_bg
 drawable phone
 drawable rectangle
 drawable runningshoe
+drawable sam
+drawable samsung
 drawable shoes
 drawable shoes2
 drawable sp
@@ -1871,11 +1878,15 @@ drawable tooltip_frame_light
 drawable view
 drawable view2
 drawable view3
+font black
+font font
 id ALT
+id Apple
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id FUNCTION
+id Google
 id META
 id NO_DEBUG
 id SHIFT
@@ -1883,6 +1894,7 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
+id Samsung
 id TOP_END
 id TOP_START
 id accelerate
@@ -2005,7 +2017,6 @@ id constraint
 id container
 id content
 id content1
-id content4
 id contentPanel
 id contiguous
 id continuousVelocity
@@ -2336,6 +2347,7 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView1
 id textView2
 id textView3
 id textView_date
@@ -2373,8 +2385,6 @@ id tv1
 id tv2
 id tv3
 id tv4
-id tv5
-id tv6
 id unchecked
 id uniform
 id unlabeled
@@ -2924,6 +2934,7 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style DayPickerTheme
 style EmptyTheme
 style MaterialAlertDialog_MaterialComponents
 style MaterialAlertDialog_MaterialComponents_Body_Text
@@ -3212,6 +3223,7 @@ style ThemeOverlay_MaterialComponents_TimePicker_Display
 style ThemeOverlay_MaterialComponents_Toolbar_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Surface
 style ThemeOverlayColorAccentRed
+style TimePickerTheme
 style Widget_AppCompat_ActionBar
 style Widget_AppCompat_ActionBar_Solid
 style Widget_AppCompat_ActionBar_TabBar

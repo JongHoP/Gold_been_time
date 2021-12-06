@@ -3325,6 +3325,11 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
+    <style name="DayPickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
     <style name="EmptyTheme"/>
     <style name="MaterialAlertDialog.MaterialComponents" parent="AlertDialog.AppCompat">
     <item name="android:layout">@layout/mtrl_alert_dialog</item>
@@ -4228,6 +4233,11 @@
     <style name="ThemeOverlayColorAccentRed" ns1:ignore="NewApi">
     <item name="android:colorAccent">#FFFF0000</item>
   </style>
+    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
     <style name="Widget.AppCompat.ActionBar" parent="Base.Widget.AppCompat.ActionBar">
     </style>
     <style name="Widget.AppCompat.ActionBar.Solid" parent="Base.Widget.AppCompat.ActionBar.Solid">
