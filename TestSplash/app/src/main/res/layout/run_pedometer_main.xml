@@ -52,7 +52,7 @@
         app:progress_stroke_width="20dp "
         app:progress_text_size="50sp"
         app:style="solid_line" />
-
+<!---->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="117dp"

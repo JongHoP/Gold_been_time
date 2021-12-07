@@ -19,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewactivity_main);
 
+        try {
+            Thread.sleep(4000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
         ViewPager viewPager = findViewById((R.id.pager));
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);

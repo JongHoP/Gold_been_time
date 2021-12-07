@@ -1,9 +1,9 @@
-#Mon Dec 06 19:20:49 KST 2021
-base.2=D\:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+#Tue Dec 07 17:38:26 KST 2021
+base.2=C\:\\Users\\User\\Documents\\Github\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
 path.2=12/classes.dex
-base.1=D\:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.1=C\:\\Users\\User\\Documents\\Github\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 path.1=0/classes.dex
-base.0=D\:\\Android\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.0=C\:\\Users\\User\\Documents\\Github\\Gold_been_time\\TestSplash\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
