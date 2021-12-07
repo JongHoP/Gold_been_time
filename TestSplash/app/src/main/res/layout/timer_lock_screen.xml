@@ -26,6 +26,7 @@
               android:layout_height="wrap_content"
               android:layout_gravity="right|center_vertical"
               android:text="8분"
+              android:paddingLeft="5dp"
               android:textColor="@color/black"
               android:textSize="15pt" />
       </LinearLayout>

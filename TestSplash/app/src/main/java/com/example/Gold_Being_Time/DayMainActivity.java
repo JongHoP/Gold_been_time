@@ -13,6 +13,8 @@ import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
+
 public class DayMainActivity extends AppCompatActivity{
     int hour = 0;
     int minute = 0;
@@ -34,7 +36,13 @@ public class DayMainActivity extends AppCompatActivity{
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog dialog = new DatePickerDialog(DayMainActivity.this,  R.style.DayPickerTheme, callbackMethod, 2021, 10, 30);
+                Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog =
+                        new DatePickerDialog(DayMainActivity.this, R.style.DayPickerTheme, callbackMethod, mYear, mMonth, mDay);
                 dialog.show();
             }
         });

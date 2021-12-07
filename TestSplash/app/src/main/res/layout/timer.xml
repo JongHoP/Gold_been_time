@@ -70,7 +70,7 @@
             android:width="20dp"
             android:height="10dp"
             android:background="@drawable/buttoncustom"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="350dp"
             android:text="확인"
             android:textSize="20dp" />
     </LinearLayout>
